@@ -3,14 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malla Curricular - Mi Carrera</title>
+    <title>Malla Curricular - Administración y Gestión de RRHH</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>Malla Curricular Interactiva</h1>
-        <div id="malla-container"></div>
+        <header>
+            <h1>Administración y Gestión de Recursos Humanos</h1>
+            <p class="subtitle">Universidad Técnica Nacional - Malla Curricular Interactiva</p>
+        </header>
+        
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">Todos los niveles</button>
+            <button class="filter-btn" data-filter="diplomado">Diplomado</button>
+            <button class="filter-btn" data-filter="bachillerato">Bachillerato</button>
+            <button class="filter-btn" data-filter="licenciatura">Licenciatura</button>
+        </div>
+        
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+        </div>
+        
+        <div class="malla-container">
+            <!-- Los niveles se insertarán aquí mediante JavaScript -->
+        </div>
     </div>
+    
+    <div class="modal" id="ramo-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <div class="modal-codigo" id="modal-codigo"></div>
+                <h2 class="modal-title" id="modal-title"></h2>
+                <div class="modal-info">
+                    <div class="modal-info-item" id="modal-creditos"></div>
+                    <div class="modal-info-item" id="modal-nivel"></div>
+                </div>
+            </div>
+            <div class="modal-section">
+                <h3 class="modal-section-title">Requisitos</h3>
+                <div class="modal-prerrequisitos" id="modal-prerrequisitos"></div>
+            </div>
+            <div class="modal-section">
+                <h3 class="modal-section-title">Descripción</h3>
+                <p id="modal-descripcion">Información detallada del curso. Haz clic en "Marcar como completado" para llevar un registro de tu progreso.</p>
+            </div>
+            <div class="modal-section">
+                <button class="filter-btn" id="completado-btn">Marcar como completado</button>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
