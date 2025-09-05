@@ -1,5 +1,5 @@
 // ========================
-// 1. DATOS DE LA MALLA (CORREGIDO + ELECTIVOS)
+// 1. DATOS DE LA MALLA
 // ========================
 const electivoOpciones = {
   "AGRHEL-I": [
