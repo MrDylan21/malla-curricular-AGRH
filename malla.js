@@ -295,6 +295,30 @@ function buscarRamo(codigo) {
     }
     return null;
 }
+function puedeCompletar(ramo, tipoGrado) {
+  const pendientes = ramo.requisitos.filter(req => localStorage.getItem(req) !== 'completado' && !req.includes("Niveles"));
+  if (pendientes.length > 0) {
+    alert("Requisitos pendientes: " + pendientes.join(", "));
+    return false;
+  }
+  if (tipoGrado === "bachillerato") {
+    const totalDiplo = contarCursos(mallaData.diplomado);
+    const aprobadosDiplo = contarAprobados(mallaData.diplomado);
+    if (totalDiplo - aprobadosDiplo > 3) {
+      alert("Debes completar el Diplomado o tener máximo 3 cursos pendientes para avanzar al Bachillerato.");
+      return false;
+    }
+  }
+  if (tipoGrado === "licenciatura") {
+    const totalBachi = contarCursos(mallaData.bachillerato);
+    const aprobadosBachi = contarAprobados(mallaData.bachillerato);
+    if (totalBachi !== aprobadosBachi) {
+      alert("Debes completar el Bachillerato para avanzar a la Licenciatura.");
+      return false;
+    }
+  }
+  return true;
+}
 
 // ========================
 // 4. PROGRESO Y EVENTOS
