@@ -1,11 +1,10 @@
 :root {
-  --primary-color: #5DADE2;        /* Azul suave */
-  --secondary-color: #EBF5FB;      /* Gris/Azul claro */
-  --accent-color: #27AE60;         /* Verde (completado) */
-  --vino-color: #8B1C3F;           /* Rojo vino */
-  --highlight-color: #E74C3C;      /* Rojo alerta */
-  --text-color: #2C3E50;
-  --card-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  --primary-color: #f8b6cd;   /* Rosa pastel */
+  --secondary-color: #f8d7e4; /* Rosa claro */
+  --accent-color: #27AE60;    /* Verde para completados */
+  --highlight-color: #d81b60; /* Rosa fuerte */
+  --text-color: #4a4a4a;
+  --card-shadow: 0 4px 12px rgba(216, 27, 96, 0.2);
 }
 
 * {
@@ -16,9 +15,10 @@
 }
 
 body {
-  background-color: #f8f9f9;
+  background-color: #fafafa;
   color: var(--text-color);
   padding: 20px;
+  background-image: linear-gradient(to bottom right, #fff5f8, #ffeef4);
   min-height: 100vh;
 }
 
@@ -32,7 +32,7 @@ header {
   text-align: center;
   margin-bottom: 30px;
   padding: 20px;
-  background: linear-gradient(135deg, var(--vino-color), var(--primary-color));
+  background: linear-gradient(135deg, var(--primary-color), var(--highlight-color));
   border-radius: 15px;
   color: white;
   box-shadow: var(--card-shadow);
@@ -48,15 +48,15 @@ h1 { font-size: 2.5rem; margin-bottom: 10px; font-weight: 700; }
 .filter-btn {
   padding: 10px 20px;
   background-color: white;
-  border: 2px solid var(--vino-color);
+  border: 2px solid var(--primary-color);
   border-radius: 30px;
-  color: var(--vino-color);
+  color: var(--highlight-color);
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 .filter-btn:hover, .filter-btn.active {
-  background-color: var(--vino-color);
+  background-color: var(--highlight-color);
   color: white;
   transform: scale(1.05);
 }
@@ -75,10 +75,10 @@ h1 { font-size: 2.5rem; margin-bottom: 10px; font-weight: 700; }
   display: flex; align-items: center; margin-bottom: 20px; padding-bottom: 10px;
   border-bottom: 2px solid var(--secondary-color);
 }
-.nivel-titulo { font-size: 1.5rem; color: var(--vino-color); margin-right: 15px; }
+.nivel-titulo { font-size: 1.5rem; color: var(--highlight-color); margin-right: 15px; }
 .creditos {
   background-color: var(--secondary-color);
-  color: var(--vino-color);
+  color: var(--highlight-color);
   padding: 5px 10px;
   border-radius: 20px;
   font-weight: 600;
@@ -92,10 +92,10 @@ h1 { font-size: 2.5rem; margin-bottom: 10px; font-weight: 700; }
 }
 
 .ramo {
-  background: linear-gradient(135deg, #fff, #fdfefe);
+  background: linear-gradient(135deg, #fff, var(--secondary-color));
   border-radius: 12px;
   padding: 15px;
-  border-left: 5px solid var(--vino-color);
+  border-left: 5px solid var(--primary-color);
   transition: all 0.3s ease;
   cursor: pointer;
   opacity: 0;
@@ -105,11 +105,11 @@ h1 { font-size: 2.5rem; margin-bottom: 10px; font-weight: 700; }
 .ramo:hover { 
   transform: translateY(-5px) scale(1.02); 
   box-shadow: var(--card-shadow); 
-  border-left-color: var(--accent-color); 
+  border-left-color: var(--highlight-color); 
 }
-.ramo-codigo { font-size: 0.9rem; color: var(--vino-color); font-weight: 600; margin-bottom: 5px; }
+.ramo-codigo { font-size: 0.9rem; color: var(--highlight-color); font-weight: 600; margin-bottom: 5px; }
 .ramo-nombre { font-size: 1.1rem; font-weight: 600; margin-bottom: 10px; color: var(--text-color); }
-.ramo-creditos { background-color: var(--secondary-color); padding: 3px 8px; border-radius: 15px; color: var(--vino-color); font-weight: 600; }
+.ramo-creditos { background-color: var(--secondary-color); padding: 3px 8px; border-radius: 15px; color: var(--highlight-color); font-weight: 600; }
 .ramo-requisitos { font-size: 0.85rem; color: #555; margin-top: 10px; padding-top: 10px; border-top: 1px dashed #eee; }
 
 /* ===== MODAL ===== */
@@ -125,19 +125,19 @@ h1 { font-size: 2.5rem; margin-bottom: 10px; font-weight: 700; }
 .close-modal { position: absolute; top: 15px; right: 15px; font-size: 1.5rem; color: #aaa; cursor: pointer; }
 .close-modal:hover { color: var(--highlight-color); }
 .modal-header { margin-bottom: 20px; border-bottom: 2px solid var(--secondary-color); }
-.modal-codigo { color: var(--vino-color); font-weight: 600; }
+.modal-codigo { color: var(--highlight-color); font-weight: 600; }
 .modal-title { font-size: 1.5rem; margin-bottom: 10px; }
 .modal-info { display: flex; gap: 15px; margin-bottom: 20px; }
-.modal-info-item { background-color: var(--secondary-color); padding: 8px 15px; border-radius: 20px; font-size: 0.9rem; font-weight: 600; color: var(--vino-color); }
+.modal-info-item { background-color: var(--secondary-color); padding: 8px 15px; border-radius: 20px; font-size: 0.9rem; font-weight: 600; color: var(--highlight-color); }
 .modal-section { margin-bottom: 20px; }
-.modal-section-title { font-size: 1.1rem; color: var(--vino-color); margin-bottom: 10px; font-weight: 600; }
+.modal-section-title { font-size: 1.1rem; color: var(--highlight-color); margin-bottom: 10px; font-weight: 600; }
 .modal-prerrequisitos { display: flex; flex-wrap: wrap; gap: 10px; }
-.prerrequisito-chip { background-color: var(--secondary-color); padding: 5px 12px; border-radius: 15px; font-size: 0.85rem; color: var(--vino-color); }
+.prerrequisito-chip { background-color: var(--secondary-color); padding: 5px 12px; border-radius: 15px; font-size: 0.85rem; color: var(--highlight-color); }
 
 /* ===== PROGRESO ===== */
 .progress-container { display: flex; justify-content: center; margin: 30px 0; }
 .progress-bar { width: 100%; max-width: 600px; height: 10px; background-color: #eee; border-radius: 5px; overflow: hidden; }
-.progress-fill { height: 100%; background: linear-gradient(to right, var(--vino-color), var(--accent-color)); border-radius: 5px; width: 0%; transition: width 1s ease-in-out; }
+.progress-fill { height: 100%; background: linear-gradient(to right, var(--primary-color), var(--highlight-color)); border-radius: 5px; width: 0%; transition: width 1s ease-in-out; }
 
 /* ===== ANIMACIONES ===== */
 @keyframes fadeInUp {
@@ -159,4 +159,3 @@ h1 { font-size: 2.5rem; margin-bottom: 10px; font-weight: 700; }
   .filters { flex-direction: column; align-items: center; }
   .filter-btn { width: 100%; text-align: center; }
 }
-
