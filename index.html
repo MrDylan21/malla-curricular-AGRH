@@ -2,57 +2,114 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Malla curricular interactiva de Administración y Gestión de Recursos Humanos, Universidad Técnica Nacional." />
   <title>Malla Curricular - Administración y Gestión de RRHH</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="container">
     <header>
+      <p class="eyebrow">Universidad Técnica Nacional</p>
       <h1>Administración y Gestión de Recursos Humanos</h1>
-      <p class="subtitle">Universidad Técnica Nacional</p>
+      <p class="subtitle">Malla curricular interactiva — Diplomado, Bachillerato y Licenciatura</p>
     </header>
 
-    <div class="filters">
-      <button class="filter-btn active" data-filter="all">Todos los niveles</button>
-      <button class="filter-btn" data-filter="diplomado">Diplomado</button>
-      <button class="filter-btn" data-filter="bachillerato">Bachillerato</button>
-      <button class="filter-btn" data-filter="licenciatura">Licenciatura</button>
-    </div>
-
-    <div class="progress-container">
-      <div class="progress-bar">
-        <div class="progress-fill" id="progress-fill"></div>
+    <section class="panel">
+      <div class="filters" role="group" aria-label="Filtrar por grado académico">
+        <button class="filter-btn active" data-filter="all" aria-pressed="true">Toda la malla</button>
+        <button class="filter-btn" data-filter="diplomado" aria-pressed="false">Diplomado</button>
+        <button class="filter-btn" data-filter="bachillerato" aria-pressed="false">Bachillerato</button>
+        <button class="filter-btn" data-filter="licenciatura" aria-pressed="false">Licenciatura</button>
       </div>
-    </div>
 
-    <div class="malla-container"><!-- JS genera los cursos aquí --></div>
+      <div class="progress-container">
+        <div class="progress-head">
+          <span class="progress-label">Avance por créditos</span>
+          <span class="progress-porcentaje" id="progress-porcentaje">0%</span>
+        </div>
+        <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Avance de la carrera">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <div class="stats">
+          <div class="stat">
+            <span class="stat-valor" id="stat-cursos">0 / 0</span>
+            <span class="stat-label">Cursos aprobados</span>
+          </div>
+          <div class="stat">
+            <span class="stat-valor" id="stat-creditos">0 / 0</span>
+            <span class="stat-label">Créditos</span>
+          </div>
+          <div class="stat">
+            <span class="stat-valor" id="stat-disponibles">0</span>
+            <span class="stat-label">Cursos disponibles</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-footer">
+        <ul class="leyenda">
+          <li><span class="punto punto-completado"></span> Aprobado</li>
+          <li><span class="punto punto-disponible"></span> Disponible</li>
+          <li><span class="punto punto-bloqueado"></span> Bloqueado</li>
+        </ul>
+        <button class="reset-btn" id="reset-btn" type="button">Reiniciar avance</button>
+      </div>
+    </section>
+
+    <main class="malla-container"><!-- JS genera los cursos aquí --></main>
+
+    <footer class="pie">
+      El avance se guarda únicamente en este navegador.
+    </footer>
   </div>
 
   <!-- Modal -->
-  <div class="modal" id="ramo-modal">
+  <div class="modal" id="ramo-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
     <div class="modal-content">
-      <span class="close-modal">&times;</span>
+      <button class="close-modal" type="button" aria-label="Cerrar">&times;</button>
+
       <div class="modal-header">
         <div class="modal-codigo" id="modal-codigo"></div>
         <h2 class="modal-title" id="modal-title"></h2>
         <div class="modal-info">
-          <div class="modal-info-item" id="modal-creditos"></div>
-          <div class="modal-info-item" id="modal-nivel"></div>
+          <span class="modal-info-item" id="modal-creditos"></span>
+          <span class="modal-info-item" id="modal-nivel"></span>
         </div>
       </div>
+
+      <p class="modal-aviso" id="modal-aviso" hidden></p>
+
       <div class="modal-section">
         <h3 class="modal-section-title">Requisitos</h3>
         <div class="modal-prerrequisitos" id="modal-prerrequisitos"></div>
       </div>
+
+      <div class="modal-section" id="modal-correquisitos-section" hidden>
+        <h3 class="modal-section-title">Correquisitos</h3>
+        <p class="modal-nota">Cursos que el plan declara de forma recíproca: se matriculan en el mismo periodo y no se bloquean entre sí.</p>
+        <div class="modal-prerrequisitos" id="modal-correquisitos"></div>
+      </div>
+
+      <div class="modal-section" id="modal-electivo-section" hidden>
+        <h3 class="modal-section-title">Seleccione una opción del electivo</h3>
+        <div id="modal-electivo-opciones"></div>
+      </div>
+
       <div class="modal-section">
         <h3 class="modal-section-title">Descripción</h3>
         <p id="modal-descripcion"></p>
       </div>
-      <div class="modal-section">
-        <button class="filter-btn" id="completado-btn">Marcar como completado</button>
+
+      <div class="modal-section" id="modal-desbloquea-section" hidden>
+        <h3 class="modal-section-title">Habilita estos cursos</h3>
+        <div class="modal-prerrequisitos" id="modal-desbloquea"></div>
       </div>
+
+      <button class="accion-btn" id="completado-btn" type="button">Marcar como aprobado</button>
     </div>
   </div>
 
